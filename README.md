@@ -2,15 +2,10 @@
 
 A highly customizable calendar library for Android, powered by RecyclerView.
 
-[![CI](https://github.com/kizitonwose/CalendarView/workflows/CI/badge.svg?branch=master)](https://github.com/kizitonwose/CalendarView/actions) 
-[![JitPack](https://jitpack.io/v/kizitonwose/CalendarView.svg)](https://jitpack.io/#kizitonwose/CalendarView) 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kizitonwose/CalendarView/blob/master/LICENSE.md) 
-[![Twitter](https://img.shields.io/badge/Twitter-@kizitonwose-9C27B0.svg)](https://twitter.com/kizitonwose)
-
 
 **With this library, your calendar will look however you want it to.**
 
-![Preview](https://raw.githubusercontent.com/kizitonwose/CalendarView/master/images/image-all.png)
+![Preview](https://raw.githubusercontent.com/NareshDhakecha/CalendarView/master/images/image-all.png)
 
 ## Features
 
@@ -25,15 +20,11 @@ A highly customizable calendar library for Android, powered by RecyclerView.
 - [x] [Month headers and footers](#adding-month-headers-and-footers) - Add headers/footers of any kind on each month.
 - [x] Easily scroll to any date or month view using the date.
 - [x] Use all RecyclerView customisations(decorators etc) since CalendarView extends from RecyclerView.
-- [x] Design your calendar [however you want.](https://github.com/kizitonwose/CalendarView/issues/1) The library provides the logic, you provide the views.
+- [x] Design your calendar [however you want.](https://github.com/NareshDhakecha/CalendarView/issues/1) The library provides the logic, you provide the views.
 
 ## Sample project
 
 It's very important to check out the sample app. Most techniques that you would want to implement are already implemented in the examples.
-
-Download the sample app [here](https://github.com/kizitonwose/CalendarView/releases/download/1.0.0/sample.apk)
-
-View the sample app's source code [here](https://github.com/kizitonwose/CalendarView/tree/master/sample)
 
 ## Setup
 
@@ -92,7 +83,7 @@ dependencies {
 
 You can find the latest version of `CalendarView` on the JitPack badge above the preview images.
 
-**Note: If you're upgrading from version 0.3.x to 0.4.x or 1.x.x, see the [migration guide](https://github.com/kizitonwose/CalendarView#migration).**
+**Note: If you're upgrading from version 0.3.x to 0.4.x or 1.x.x, see the [migration guide](https://github.com/NareshDhakecha/CalendarView#migration).**
 
 ## Usage
 
@@ -101,7 +92,7 @@ You can find the latest version of `CalendarView` on the JitPack badge above the
 Add CalendarView to your XML like any other view.
 
 ```xml
-<com.kizitonwose.calendarview.CalendarView
+<com.ndsoftwares.calendarview.CalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -197,7 +188,7 @@ If `true`, a section can only contain dates belonging to that month, its inDates
 
 If you are wondering what `outDates` and `inDates` mean, let's use the screenshot below as an example.
 
-<img src="https://raw.githubusercontent.com/kizitonwose/CalendarView/master/images/screenshot_in_out_dates.png" alt="inDate and outDates" width="300">
+<img src="https://raw.githubusercontent.com/NareshDhakecha/CalendarView/master/images/screenshot_in_out_dates.png" alt="inDate and outDates" width="300">
 
 In the image, the dates within the green annotation are `inDates`, the ones within the red annotation are `outDates` while those without annotation are `monthDates`. You can check for this when binding your calendar. To achieve the exact effect on the image, we do this: 
 
@@ -260,7 +251,7 @@ Note that setting the `daySize` property to `CalendarView.SIZE_SQUARE` makes the
 - **updateMonthConfiguration()**: Update `inDateStyle`, `outDateStyle`, `maxRowCount` and `hasBoundaries` properties without generating the underlying calendar data repeatedly. Prefer this if setting more than one of these properties at the same time. Use `updateMonthConfigurationAsync()` to do this asynchronously.
 
 
-There's no need to list all available methods or repeating the documentation here. Please see the [CalendarView](https://github.com/kizitonwose/CalendarView/blob/master/library/src/main/java/com/kizitonwose/calendarview/CalendarView.kt) class for all properties and methods available with proper documentation.
+There's no need to list all available methods or repeating the documentation here. Please see the [CalendarView](https://github.com/NareshDhakecha/CalendarView/blob/master/library/src/main/java/com/ndsoftwares/calendarview/CalendarView.kt) class for all properties and methods available with proper documentation.
 
 ### Date clicks
 
@@ -282,7 +273,7 @@ XML file for the date cell `calendar_day_layout.xml`:
 Of course, you need to set the file as `cv_dayViewResource` on the CalendarView:
 
 ```xml
-<com.kizitonwose.calendarview.CalendarView
+<com.ndsoftwares.calendarview.CalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -350,7 +341,7 @@ view.setOnClickListener {
             // Reload the newly selected date so the dayBinder is
             // called and we can ADD the selection background.
             calendarView.notifyDateChanged(day.date)
-            if currentSelection != null {
+            if (currentSelection) != null {
                 // We need to also reload the previously selected 
                 // date so we can REMOVE the selection background.
                 calendarView.notifyDateChanged(currentSelection)
@@ -418,6 +409,7 @@ calendarView.dayBinder = object : DayBinder<DayViewContainer> {
         val textView = container.textView
         textView.text = day.date.dayOfMonth.toString()
         textView.alpha = if (day.owner == DayOwner.THIS_MONTH) 1f else 0.3f
+    }
 }
 ```
 
@@ -443,7 +435,7 @@ Create the header view in `res/layout/calendar_month_header_layout.xml`:
 Set the view as the month header resource:
 
 ```xml
-<com.kizitonwose.calendarview.CalendarView
+<com.ndsoftwares.calendarview.CalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -562,17 +554,17 @@ You can also set `hasBoundaries` to `true` for a week mode calendar. This helps 
 
 Remember that all the screenshots above are just examples of what you can achieve with this library and you can absolutely build your calendar to look however you want.
 
-**Made a cool calendar with this library? Share an image [here](https://github.com/kizitonwose/CalendarView/issues/1).**
+**Made a cool calendar with this library? Share an image [here](https://github.com/NareshDhakecha/CalendarView/issues/1).**
 
 ## FAQ
 
 **Q**: How do I use this library in a Java project?
 
-**A**: It works out of the box, however, the `MonthScrollListener` is not an interface but a Kotlin function. To set the `MonthScrollListener` in a Java project see [this](https://github.com/kizitonwose/CalendarView/issues/74).
+**A**: It works out of the box, however, the `MonthScrollListener` is not an interface but a Kotlin function. To set the `MonthScrollListener` in a Java project see [this](https://github.com/NareshDhakecha/CalendarView/issues/74).
 
 **Q**: How do I disable user scrolling on the calendar so I can only scroll programmatically?
 
-**A**: See [this](https://github.com/kizitonwose/CalendarView/issues/38#issuecomment-525786644).
+**A**: See [this](https://github.com/NareshDhakecha/CalendarView/issues/38#issuecomment-525786644).
 
 **Q**: Why am I getting the same `YearMonth` value in the `CalendarMonth` passed into the `MonthScrollListener`?
 
@@ -580,18 +572,9 @@ Remember that all the screenshots above are just examples of what you can achiev
 
 ## Migration
 
-If you're upgrading from version `0.3.x` to `0.4.x` or 1.x.x, the main change is that CalendarView moved from using [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP) to [Java 8 API desugaring](https://developer.android.com/studio/write/java8-support#library-desugaring) for dates. After following the new [setup](https://github.com/kizitonwose/CalendarView#setup) instructions, the next thing you need to do is change your imports for date/time related classes from `org.threeten.bp.*` to `java.time.*`.
+If you're upgrading from version `0.3.x` to `0.4.x` or 1.x.x, the main change is that CalendarView moved from using [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP) to [Java 8 API desugaring](https://developer.android.com/studio/write/java8-support#library-desugaring) for dates. After following the new [setup](https://github.com/NareshDhakecha/CalendarView#setup) instructions, the next thing you need to do is change your imports for date/time related classes from `org.threeten.bp.*` to `java.time.*`.
 
 You also need to remove the line `AndroidThreeTen.init(this)` from the `onCreate()` method of your application class as it's no longer needed.
 
-## Contributing
-
-Found a bug? feel free to fix it and send a pull request or [open an issue](https://github.com/kizitonwose/CalendarView/issues).
-
-## Inspiration
-
-CalendarView was inspired by the iOS library [JTAppleCalendar](https://github.com/patchthecode/JTAppleCalendar). I used JTAppleCalendar in an iOS project but couldn't find anything as customizable on Android so I built this. 
-You'll find some similar terms like `InDateStyle`, `OutDateStyle`, `DayOwner` etc.
-
 ## License
-CalendarView is distributed under the MIT license. See [LICENSE](https://github.com/kizitonwose/CalendarView/blob/master/LICENSE.md) for details.
+CalendarView is distributed under the MIT license. See [LICENSE](https://github.com/NareshDhakecha/CalendarView/blob/master/LICENSE.md) for details.
